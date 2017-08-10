@@ -1,4 +1,8 @@
 Github:https://github.com/CristobalVelasquezV
 
-Programa se ejecuta en main, se muestran ejemplos de gates and , or y nand. ademas se piden 2 bits al usuario y se muestra el resultado
+Clase 01: Programa se ejecuta en main, se muestran ejemplos de gates and , or y nand. ademas se piden 2 bits al usuario y se muestra el resultado
 de la suma de bits.
+
+Clase 02: Progrma se ejecuta en Main2, se muestra ejemplos de un perceptron aprendiendo los puntos pertenecientes a dos secciones de un plano.
+
+Clase 03: Programa se ejecuta en MainClase03, muestra un Sigmoid neuron aprendiendo los puntos en un plano.
