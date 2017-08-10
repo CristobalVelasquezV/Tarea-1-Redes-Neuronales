@@ -1,6 +1,6 @@
 package gates;
 
-import java.util.ArrayList;
+
 /**
  * @author cristobal
  * Clase perceptron, recibe cantidad de ints que representan los pesos.
@@ -51,6 +51,5 @@ public class perceptron {
 		
 		
 	}
-	
 	
 }
