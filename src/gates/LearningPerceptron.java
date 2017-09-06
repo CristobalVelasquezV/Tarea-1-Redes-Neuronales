@@ -1,5 +1,5 @@
 package gates;
-import java.util.ArrayList;
+
 public class LearningPerceptron {
 
 

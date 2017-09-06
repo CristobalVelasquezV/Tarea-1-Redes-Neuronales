@@ -10,7 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		System.out.println("Ejemplo 1: un perceptron con comportamiento de gate AND");
-		perceptron AndPerceptron=new perceptron(-1,1,1);
+		Perceptron AndPerceptron=new Perceptron(-1,1,1);
 		/*Un ejemplo de AND perceptron posee un bias= - 1 y pesos w1=1 y w2=1, notamos que los outputs son los de un operador AND.*/
 		System.out.println(AndPerceptron.output(0,0));
 		System.out.println(AndPerceptron.output(0,1));
@@ -18,7 +18,7 @@ public class Main {
 		System.out.println(AndPerceptron.output(1,1));
 		
 		System.out.println("Ejemplo 2: un perceptron con comportamiento de gate OR");
-		perceptron ORPerceptron=new perceptron(0,1,1);
+		Perceptron ORPerceptron=new Perceptron(0,1,1);
 		/*Un ejemplo de OR perceptron posee un bias= 0 y pesos w1=1 y w2=1, notamos que los outputs son los de un operador OR.*/
 		System.out.println("Input x1 = 0, x2 = 0 : "+ ORPerceptron.output(0,0));
 		System.out.println(ORPerceptron.output(0,1));
@@ -26,7 +26,7 @@ public class Main {
 		System.out.println(ORPerceptron.output(1,1));
 		
 		System.out.println("Ejemplo 3: un perceptron con comportamiento de gate NAND");
-		perceptron NANDPerceptron=new perceptron(2,-1,-1);
+		Perceptron NANDPerceptron=new Perceptron(2,-1,-1);
 		/*Un ejemplo de OR perceptron posee un bias= 0 y pesos w1=1 y w2=1, notamos que los outputs son los de un operador OR.*/
 		System.out.println(NANDPerceptron.output(0,0));
 		System.out.println(NANDPerceptron.output(0,1));

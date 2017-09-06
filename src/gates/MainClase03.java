@@ -22,16 +22,19 @@ public class MainClase03 {
 		int max = 50;
 		int m = 2;
 		int b = 3;
+		SigmoidNeuron sigmoid1=new SigmoidNeuron(0.01,1,1,1);
+		System.out.println(sigmoid1.output(0,0));
+		
 		for(int k = 0 ;k < 200;k++){
 			SigmoidNeuron sigmoid=new SigmoidNeuron(0.01,1,1,1);
 			for(int i =0 ;i<k;i++){		
 				int x=ran.nextInt(max - min + 1)+ min;
 				int y=ran.nextInt(max - min + 1)+ min;		
 				if(x*m+b>=y){
-					sigmoid.learnSigmoid(x,y,1);	
+					sigmoid.learn(x,y,1);	
 				}
 				else{
-					sigmoid.learnSigmoid(x,y,0);
+					sigmoid.learn(x,y,0);
 				}
 			}
 			
@@ -42,7 +45,7 @@ public class MainClase03 {
 			int x2=ran.nextInt(max - min + 1)+ min;
 			int y2=ran.nextInt(max - min + 1)+ min;
 			/*Datos para el grafico de puntos*/
-			if(sigmoid.outputSigmoid(x2,y2)>0.5){
+			if(sigmoid.output(x2,y2)>0.5){
 				dataxblue[bluecolor]=x2;
 				datayblue[bluecolor]=y2;
 				bluecolor++;
@@ -53,12 +56,12 @@ public class MainClase03 {
 				redcolor++;
 			}
 			
-			if(x2*m+b>=y2 && sigmoid.outputSigmoid(x2,y2)>0.5){
+			if(x2*m+b>=y2 && sigmoid.output(x2,y2)>0.5){
 				achunto++;
 				
 				
 			}
-			else if(x2*m+b<y2 && sigmoid.outputSigmoid(x2,y2)<=0.5){
+			else if(x2*m+b<y2 && sigmoid.output(x2,y2)<=0.5){
 				achunto++;
 			}
 

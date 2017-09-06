@@ -10,12 +10,12 @@ package gates;
  * w: lista de pesos del perceptron
  */ 
 
-public class perceptron {
+public class Perceptron {
 	private int b;
 	private int n;
 	private int[] w;
 	
-	public perceptron(int bias,int ...weight){
+	public Perceptron(int bias,int ...weight){
 		int counter;
 		b=bias;
 		counter=weight.length;
