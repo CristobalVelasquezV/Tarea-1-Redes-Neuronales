@@ -9,6 +9,9 @@ public class NeuronLayer {
 	
 	private ArrayList<GenericNeuron> layer;
 	
+	public NeuronLayer(ArrayList<GenericNeuron> neurons){
+		layer=neurons;
+	}
 	
 	public NeuronLayer (int n , NeuronFactory factory,double...weights){
 		layer=new ArrayList<GenericNeuron>();
@@ -58,16 +61,23 @@ public class NeuronLayer {
 		int n=nextlayer.layerSize();
 		int m=this.layerSize();
 		double totalerror=0;
-		double output;
+		
+		double total=0;
+		int nw=0;
 		for(int j=0;j<m;j++){
+			GenericNeuron neuron=this.layer.get(j);
 		for(int i=0;i<n;i++){
-			GenericNeuron neuron=nextlayer.getNeuron(i);
-			totalerror+=neuron.returnError(j);
+			GenericNeuron nextneuron=nextlayer.getNeuron(i);
+			
+			total+=nextneuron.getDelta()*nextneuron.getWeight(nw);//iba i
+			//System.out.println("delta next neuron:"+nextneuron.getDelta());
 		}
-		GenericNeuron thisneuron=layer.get(j);
-		output=thisneuron.getLastOutput();
-		thisneuron.changeDelta(totalerror*output*(1-output));
-		totalerror=0;
+		nw++;
+		neuron.changeError(total);
+		neuron.changeDelta(total*(neuron.getLastOutput()*(1-neuron.getLastOutput())));
+		//System.out.println("Last output:"+neuron.getLastOutput());
+		//System.out.println("total:"+total);
+		total=0;
 		}
 				
 	}
@@ -97,6 +107,13 @@ public class NeuronLayer {
 	public void updateWeight(int i) {
 			
 		
+	}
+
+	public void showWeights() {
+		for(int i=0;i<this.layerSize();i++){
+			System.out.println("Neuron: "+i);
+			this.layer.get(i).showWeights();
+		}	
 	}
 	
 

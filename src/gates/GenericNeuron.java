@@ -10,7 +10,7 @@ public abstract class GenericNeuron {
 	
 	abstract void changeDelta(double delta);
 	
-	abstract void changeOutput(double output);
+	public abstract void changeOutput(double output);
 	
 	abstract void changeWeight(int i);
 	
@@ -23,6 +23,10 @@ public abstract class GenericNeuron {
 	abstract double getDelta();
 	
 	abstract double returnError(int i);
+
+	abstract void showWeights();
+	
+	abstract double getWeight(int i);
 	
 	
 }

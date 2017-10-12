@@ -21,7 +21,7 @@ public class lasVegasTest {
 
 	@Before
 	public void setUp() throws Exception {
-		double learningrate=0.2;
+		double learningrate=0.01;
 		double learningrate2=0.1;
 		double bias=1;
 		int nlayers = 3;

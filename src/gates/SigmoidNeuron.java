@@ -22,7 +22,7 @@ public class SigmoidNeuron extends GenericNeuron {
 		private double output = -1;
 		private double[] lastinput;
 		
-		
+
 		public SigmoidNeuron(double learingRate,double bias,double ...weight){
 			int counter;
 			c=learingRate;
@@ -47,6 +47,7 @@ public class SigmoidNeuron extends GenericNeuron {
 					i++;
 				}
 				ret=1/(1+Math.pow(Math.E,-(total+b)));
+				//su propio output:
 				this.changeOutput(ret);
 				return ret;
 				}
@@ -96,7 +97,7 @@ public class SigmoidNeuron extends GenericNeuron {
 			delta=d;
 		}
 		@Override
-		void changeOutput(double o) {
+		public void changeOutput(double o) {
 			output=o;
 		}
 		@Override
@@ -114,15 +115,36 @@ public class SigmoidNeuron extends GenericNeuron {
 		@Override
 		void changeWeight(int i) {
 			w[i]=w[i]+(c*delta*lastinput[i]);
+			//System.out.println("delta change w: "+delta);
+			//System.out.println("input change w:: "+lastinput[i]);
 		}
 		@Override
 		void changeBias() {
+			//System.out.println("delta: changebias " +delta);
 			b=b+(c*delta);
 			
 		}
 		@Override
 		void changeLastInput(double[] input) {
 			lastinput=input;		
+		}
+		@Override
+		void showWeights() {
+			
+			for(int i=0; i<this.w.length;i++){
+			System.out.println("Peso: "+i +" "+this.w[i]+" ");
+		
+			}
+			System.out.println("bias: "+b);
+			System.out.println("output: "+output);
+			System.out.println("delta: "+delta);
+			System.out.println();
+			
+		}
+		@Override
+		double getWeight(int i) {
+			return w[i];
+			
 		}
 
 }
