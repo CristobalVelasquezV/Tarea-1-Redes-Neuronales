@@ -5,7 +5,8 @@ import java.util.Random;
 
 import neuronFactory.NeuronFactory;
 
-public class NeuronalNetwork {
+public class NeuronalNetwork implements Comparable {
+	int fitness;
 	private ArrayList<NeuronLayer> network;
 	
 	public NeuronalNetwork(ArrayList<NeuronLayer> lst){
@@ -40,56 +41,56 @@ public class NeuronalNetwork {
 	
 	public NeuronalNetwork() {
 		/*5 inputs 1 output , 2 layers */
+		fitness=0;
 		double learningrate1=0.5;
 		double bias1=0.1;
 		Random ran = new Random();
 		//generar pesos aleatorios entre 1 y 2
 
-		int max = 2;
 		
-		int p1=ran.nextInt(max  + 1);
-		int p2=ran.nextInt(max + 1);
-		int p3=ran.nextInt(max + 1);
-		int p4=ran.nextInt(max + 1);
-		int p5=ran.nextInt(max + 1);
+		double p1=ran.nextDouble();
+		double p2=ran.nextDouble();
+		double p3=ran.nextDouble();
+		double p4=ran.nextDouble();
+		double p5=ran.nextDouble();
 		double[] w1={p1,p2,p3,p4,p5};
 		GenericNeuron neuron1=new SigmoidNeuron(learningrate1,bias1,w1);
 	
-		p1=ran.nextInt(max  + 1);
-		p2=ran.nextInt(max + 1);
-		p3=ran.nextInt(max + 1);
-		p4=ran.nextInt(max + 1);
-		p5=ran.nextInt(max + 1);
+		p1=ran.nextDouble();
+		p2=ran.nextDouble();
+		p3=ran.nextDouble();
+		p4=ran.nextDouble();
+		p5=ran.nextDouble();
 		double[] w2={p1,p2,p3,p4,p5};
 		GenericNeuron neuron2=new SigmoidNeuron(learningrate1,bias1,w2);
-		p1=ran.nextInt(max  + 1);
-		p2=ran.nextInt(max + 1);
-		p3=ran.nextInt(max + 1);
-		p4=ran.nextInt(max + 1);
-		p5=ran.nextInt(max + 1);
+		p1=ran.nextDouble();
+		p2=ran.nextDouble();
+		p3=ran.nextDouble();
+		p4=ran.nextDouble();
+		p5=ran.nextDouble();
 
 		double[] w3={p1,p2,p3,p4,p5};
 		GenericNeuron neuron3=new SigmoidNeuron(learningrate1,bias1,w3);
-		p1=ran.nextInt(max  + 1);
-		p2=ran.nextInt(max + 1);
-		p3=ran.nextInt(max + 1);
-		p4=ran.nextInt(max + 1);
-		p5=ran.nextInt(max + 1);
+		p1=ran.nextDouble();
+		p2=ran.nextDouble();
+		p3=ran.nextDouble();
+		p4=ran.nextDouble();
+		p5=ran.nextDouble();
 		double[] w4={p1,p2,p3,p4,p5};
 		GenericNeuron neuron4=new SigmoidNeuron(learningrate1,bias1,w4);
-		p1=ran.nextInt(max  + 1);
-		p2=ran.nextInt(max + 1);
-		p3=ran.nextInt(max + 1);
-		p4=ran.nextInt(max + 1);
-		p5=ran.nextInt(max + 1);
+		p1=ran.nextDouble();
+		p2=ran.nextDouble();
+		p3=ran.nextDouble();
+		p4=ran.nextDouble();
+		p5=ran.nextDouble();
 		double[] w5 ={p1,p2,p3,p4,p5};
 		GenericNeuron neuron5=new SigmoidNeuron(learningrate1,bias1,w5);
 		
-		p1=ran.nextInt(max  + 1);
-		p2=ran.nextInt(max + 1);
-		p3=ran.nextInt(max + 1);
-		p4=ran.nextInt(max + 1);
-		p5=ran.nextInt(max + 1);
+		p1=ran.nextDouble();
+		p2=ran.nextDouble();
+		p3=ran.nextDouble();
+		p4=ran.nextDouble();
+		p5=ran.nextDouble();
 		double[] w6 ={p1,p2,p3,p4,p5};
 		GenericNeuron neuron6=new SigmoidNeuron(learningrate1,bias1,w6);
 
@@ -119,6 +120,59 @@ public class NeuronalNetwork {
 		}
 
 		return value;
+	}
+	
+	public void networkMutation(double mutation){
+		Random ran=new Random();
+		int n=this.size();
+		NeuronalNetwork network =this;
+		double val;
+		ArrayList<NeuronLayer> layers=network.network;
+		for(int i=0;i<n;i++){
+			NeuronLayer layer=layers.get(i);
+			int m=layer.layerSize();
+			for(int j=0;j<m;j++){
+				GenericNeuron neuron=layer.getNeuron(j);
+				int k=neuron.length();
+				for(int l=0;l<k;l++){
+					val=ran.nextDouble();
+					if(val<mutation){
+						neuron.changeWeightFor(l,ran.nextDouble()*2);
+					}
+				}
+			}
+		}
+	}
+	
+	public NeuronalNetwork networkCrossOver(NeuronalNetwork mother) throws Exception{
+		//ArrayList<NeuronLayer> childlayers=new ArrayList<NeuronLayer>();
+		NeuronalNetwork father =this;
+		int n=this.size();
+		int m;
+		Random ran=new Random();
+		int val;
+		if(father.size()!=mother.size()){
+			throw(new Exception());
+		}
+		else{
+		 ArrayList<NeuronLayer> fatherlayers=father.network;
+		 ArrayList<NeuronLayer> motherlayers=mother.network;
+		 for(int i=0;i<n;i++){
+			 NeuronLayer fatherlayer=fatherlayers.get(i);
+			 NeuronLayer motherlayer=motherlayers.get(i);
+			 m=fatherlayer.layerSize();
+			 for(int j=0;j<m;j++){
+				 GenericNeuron neuron=fatherlayer.getNeuron(j);
+				 GenericNeuron neuronmother=motherlayer.getNeuron(j);
+				 val=ran.nextInt(m);
+				 for(int l=m;l<neuron.length();l++){
+					 neuron.changeWeightFor(l,neuronmother.getWeight(l));
+				 }
+			 }
+			 
+		 }
+		 }
+		return father;
 	}
 	
 	public void networkLearn(double[] input,double[] expectedOutput){
@@ -175,5 +229,29 @@ public class NeuronalNetwork {
 	
 	public int size(){
 		return network.size();
+	}
+	
+	public void SetFitness(int f){
+		fitness=f;
+	}
+	public int getNormalizedFitness(){
+		return fitness;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		NeuronalNetwork bitseq=(NeuronalNetwork)o;
+		double thisfit=this.getNormalizedFitness();
+		double otherfit = bitseq.getNormalizedFitness();
+		if(thisfit<otherfit){
+			return 1;
+		}
+		else if(thisfit==otherfit){
+			return 0;
+		}
+		else{
+			return -1;
+		}
+
 	}
 }

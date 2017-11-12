@@ -28,5 +28,9 @@ public abstract class GenericNeuron {
 	
 	abstract double getWeight(int i);
 	
+	abstract int length();
+	
+	abstract void changeWeightFor(int i,double j);
+	
 	
 }

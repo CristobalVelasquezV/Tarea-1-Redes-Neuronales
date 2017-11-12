@@ -146,5 +146,13 @@ public class SigmoidNeuron extends GenericNeuron {
 			return w[i];
 			
 		}
+		@Override
+		int length() {	
+			return w.length;
+		}
+		@Override
+		void changeWeightFor(int i, double j) {
+			w[i]=j;		
+		}
 
 }

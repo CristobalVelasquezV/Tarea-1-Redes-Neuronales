@@ -9,3 +9,5 @@ Clase 03: Programa se ejecuta en MainClase03, muestra un Sigmoid neuron aprendie
 
 Tarea 2: Se ejecuta en Pong con el boton 1 se intercambia posicion con la AI, se mueve con las flechas del teclado, tambien se puede intercambiar
 el p1 por un AIPaddle que busca la posicion de la pelota en todo momento.
+
+Tarea 3: se ejecuta en Pong, se necesita esperar mucho (horas) para los primeros resultados.

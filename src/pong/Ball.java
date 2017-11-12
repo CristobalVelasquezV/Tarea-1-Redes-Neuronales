@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ball {
+	int collitions;
 	double xVel,yVel,x,y;
 	int WIDTH,HEIGHT;
 	final int ballw=10;
 	public Ball(int w,int h){
+		collitions=0;
 		xVel=-2;
 		yVel=1;
 		x=350;
@@ -26,8 +28,12 @@ public class Ball {
 		else if(x>=650){
 			if(y>=p2.GetY() && y<=p2.GetY()+80){
 				xVel=-xVel;
+				collitions++;
 			}
 		}
+	}
+	public int numberCollitions(){
+		return collitions;
 	}
 	
 	public void draw(Graphics g){
